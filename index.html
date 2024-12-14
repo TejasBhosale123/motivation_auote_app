@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title> Motivation Quote Application </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    <center>
+        <h1> Motivation Quote App Using API </h1>
+        <form>
+            <h2 id="msg"></h2>
+            <h3 id="aut"></h5>
+        </form>
+
+        <script>
+            function getMessage(){
+                let msg = document.getElementById("msg");
+                let aut = document.getElementById("aut");
+
+                let url = "https://quotes-api-self.vercel.app/quote";
+                fetch(url)
+                .then(res => res.json())
+                .then(data =>{
+                    let qt = data.quote;
+                    let auth = data.author;
+                    msg.innerHTML = qt;
+                    aut.innerHTML = auth;
+                })
+                .catch(err => alert("Issue in fetching" +err))
+                
+            }
+
+            setInterval(getMessage,1000);
+        </script>
+    </center>
+    </body>
+</html>
